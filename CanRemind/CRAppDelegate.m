@@ -8,13 +8,29 @@
 
 #import "CRAppDelegate.h"
 
+@interface CRAppDelegate ()
+
+@end
+
 @implementation CRAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil];
+    [application registerUserNotificationSettings:settings];
+    
     return YES;
 }
+
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"an alert" message:notification.alertBody delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+}
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

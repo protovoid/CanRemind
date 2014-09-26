@@ -36,6 +36,7 @@
     if (localNotification) {
     localNotification.fireDate = alertTime;
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    // localNotification.repeatInterval = 0;
     localNotification.alertBody = @"here is a notification!";
     localNotification.soundName = @"bell_tree.mp3";
         

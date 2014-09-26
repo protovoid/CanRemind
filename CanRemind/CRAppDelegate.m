@@ -7,6 +7,7 @@
 //
 
 #import "CRAppDelegate.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface CRAppDelegate ()
 
@@ -20,6 +21,13 @@
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil];
     [application registerUserNotificationSettings:settings];
     
+    UILocalNotification *localNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotification) {
+        application.applicationIconBadgeNumber = 0;
+    }
+    
+    AudioServicesPlaySystemSound(1300);
+    
     return YES;
 }
 
@@ -28,6 +36,7 @@
     
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"an alert" message:notification.alertBody delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
+    application.applicationIconBadgeNumber = 0;
 }
 
 
